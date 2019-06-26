@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/recursos/template/template.xhtml">
+	
+		<ui:define name="tituloPagina">Cliente</ui:define>
+		
+		<ui:define name="tituloPrincipal">Cadastrdo de Cliente</ui:define>
+		
+		<ui:define name="tituloSegundario">Cadastre-se para realizar locações de veiculos</ui:define>
+		
+		<ui:define name="botoesAcao">
+			<p:commandButton value="Salvar" action="#{clienteBean.cadastrarCliente()}" update="@form"/>
+		</ui:define>
+		
+		<ui:define name="conteudo">
+
+			<p:panelGrid >
+				
+				<p:row>
+					<p:column>
+						<p:outputLabel for="n1" value="Nome Completo: " />
+					</p:column>
+					<p:column colspan="4">
+						<p:inputText id="n1" value="#{clienteBean.cliente.nome}" />
+					</p:column>
+					<p:column>
+						<p:message for="n1" />			
+					</p:column>	
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="n2" value="CPF: " />
+					</p:column>
+					<p:column>
+						<p:inputText mask="999.999.999-99" id="n2" value="#{clienteBean.cliente.cpf}" />
+					</p:column>
+					<p:column>
+						<p:message for="n2" />			
+					</p:column>	
+					<p:column>
+						<p:outputLabel for="n3" value="RG: " />
+					</p:column>
+					<p:column>
+						<p:inputText mask="99.999.999.*" id="n3" value="#{clienteBean.cliente.gr}" />
+					</p:column>
+					<p:column>
+						<p:message for="n3" />			
+					</p:column>	
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="n4" value="Usuario: " />
+					</p:column>
+					<p:column >
+						<p:inputText id="n4" value="#{clienteBean.cliente.usuario}" />
+					</p:column>
+					<p:column>
+						<p:message for="n4" />			
+					</p:column>	
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="n5" value="Senha: " />
+					</p:column>
+					<p:column >
+						<p:password id="n5" value="#{clienteBean.cliente.senha}" />
+					</p:column>
+					<p:column>
+						<p:message for="n5" />			
+					</p:column>	
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="n6" value="Data de Nascimento: " />
+					</p:column>
+					<p:column>
+						<p:calendar locale="pt" mask="dd/mm/yyyy" id="n6" value="#{clienteBean.cliente.data}" />
+					</p:column>
+					<p:column>
+						<p:message for="n6" />			
+					</p:column>	
+					<p:column>
+						<p:outputLabel for="n7" value="Sexo " />
+					</p:column>
+					<p:column>
+						<p:selectOneRadio id="n7" value="#{clienteBean.cliente.sexo}">
+							<f:selectItem itemLabel="Masculino" itemValue="M" />
+							<f:selectItem itemLabel="Feminino" itemValue="F" />
+						</p:selectOneRadio>
+					</p:column>
+					<p:column>
+						<p:message for="n7" />			
+					</p:column>	
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="n8" value="Cidade de Origem:: " />
+					</p:column>
+					<p:column >
+						<p:selectOneMenu id="n8" value="#{clienteBean.cliente.cidade}">
+							<f:selectItem itemLabel="--Selecione--" noSelectionOption="true" />
+							<f:selectItem itemValue="Curitiba" itemLabel="Curitiba" />
+							<f:selectItem itemValue="Santa Catarina" itemLabel="Santa Catarina" />
+							<f:selectItem itemValue="São Paulo" itemLabel="São Paulo" />
+							<f:selectItem itemValue="Amapá" itemLabel="Amapá" />
+						</p:selectOneMenu>
+					</p:column>
+					<p:column>
+						<p:message for="n8" />			
+					</p:column>	
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="n9" value="Esportes Preferidos: " />
+					</p:column>
+					<p:column >
+						<p:selectManyCheckbox id="n9" layout="grid" columns="3" value="#{clienteBean.cliente.esportes}" converter="omnifaces.SelectItemsIndexConverter">
+							<f:selectItems value="#{clienteBean.esportes}" var="e" itemLabel="#{e.nome}" itemValue="#{e}"/>
+						</p:selectManyCheckbox> 
+					</p:column>
+					<p:column>
+						<p:message for="n9" />			
+					</p:column>	
+				</p:row>
+				
+			</p:panelGrid>
+
+
+	</ui:define>
+	
+	</ui:composition>
+</html>

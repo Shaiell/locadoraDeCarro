@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<h:form>
+
+		<p:growl globalOnly="true" />
+
+		<p:panel header="Cadastro de usuario">
+
+			<p:panelGrid columns="3">
+
+				<p:outputLabel for="n1" value="Nome Completo: " />
+				<p:inputText id="n1" value="#{clienteBean.cliente.nome}" />
+				<p:message for="n2" />
+
+			</p:panelGrid>
+
+			<p:panelGrid columns="6">
+
+				<p:outputLabel for="n2" value="CPF: " />
+				<p:inputMask mask="999.999.999-99" id="n2"
+					value="#{clienteBean.cliente.cpf}" />
+				<p:message for="n2" />
+
+				<p:outputLabel for="n3" value="RG: " />
+				<p:inputMask id="n3" mask="99.999.999.*"
+					value="#{clienteBean.cliente.gr}" />
+				<p:message for="n3" />
+
+			</p:panelGrid>
+
+			<p:panelGrid columns="3">
+
+				<p:outputLabel for="n4" value="Usuario: " />
+				<p:inputText id="n4" value="#{clienteBean.cliente.usuario}" />
+				<h:message for="n4" />
+
+			</p:panelGrid>
+
+			<p:panelGrid columns="3">
+
+				<p:outputLabel for="n5" value="Senha " />
+				<p:inputText id="n5" value="#{clienteBean.cliente.senha}" />
+				<h:message for="n5" />
+
+			</p:panelGrid>
+
+			<p:panelGrid columns="6">
+
+				<p:outputLabel for="n6" value="Data de Nascimento" />
+				<p:calendar id="n6" value="#{clienteBean.cliente.data}" />
+				<p:message for="n6" />
+
+				<p:outputLabel for="n7" value="Sexo" />
+				<p:selectOneRadio id="n7" value="#{clienteBean.cliente.sexo}">
+					<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+					<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+				</p:selectOneRadio>
+				<p:message for="n6" />
+
+			</p:panelGrid>
+
+			<p:panelGrid columns="3">
+
+				<p:outputLabel for="n8" value="Cidade de Origem: " />
+				<p:selectOneMenu id="n8" value="#{clienteBean.cliente.cidade}">
+					<f:selectItem itemLabel="--Selecione--" noSelectionOption="true" />
+					<f:selectItem itemValue="Curitiba" itemLabel="Curitiba" />
+					<f:selectItem itemValue="Santa Catarina" itemLabel="Santa Catarina" />
+					<f:selectItem itemValue="São Paulo" itemLabel="São Paulo" />
+					<f:selectItem itemValue="Amapá" itemLabel="Amapá" />
+				</p:selectOneMenu>
+				<p:message for="n8" />
+
+			</p:panelGrid>
+
+			<p:panelGrid columns="3">
+
+				<h:outputLabel for="n9" value="Esportes Favoritos: " />
+				<p:selectManyCheckbox id="n9" value="#{clienteBean.cliente.esporte}">
+					<f:selectItem itemLabel="Futebol" itemValue="Futebol" />
+					<f:selectItem itemLabel="Voleibol" itemValue="Voleibol" />
+					<f:selectItem itemLabel="BasqueteBol" itemValue="BasqueteBol" />
+					<f:selectItem itemLabel="Natação" itemValue="Natação" />
+					<f:selectItem itemLabel="Poquer" itemValue="Poquer" />
+					<f:selectItem itemLabel="Dois ou Um" itemValue="Dois ou Um" />
+					<f:selectItem itemLabel="Par ou Impar" itemValue="Par ou Impar" />
+					<f:selectItem itemLabel="Super Trunfo" itemValue="Super Trunfo" />
+
+				</p:selectManyCheckbox>
+				<p:message for="n9" />
+
+			</p:panelGrid>
+
+			<p:panelGrid columns="3">
+
+				<p:outputLabel for="n10" value="Foto: " />
+				<p:inputNumber id="n10" value="#{clienteBean.cliente.foto}" />
+				<p:commandButton form="n10" value="Buscar Foto" />
+
+			</p:panelGrid>
+
+			<f:facet name="footer">
+				<p:commandButton value="salvar"
+					action="#{clienteBean.cadastrarCliente()}" update="@form" />
+			</f:facet>
+
+		</p:panel>
+
+	</h:form>
+
+
+</h:body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/recursos/template/template.xhtml">
+		
+		<ui:define name="tituloPagina">Veiculo</ui:define>
+		
+		<ui:define name="tituloPrincipal">Cadastro de Veiculo</ui:define>
+		
+		<ui:define name="tituloSecundario">Cadastre os veiculos</ui:define>
+	
+		<ui:define name="botoesAcao">
+			<p:commandButton value="Salvar" action="#{veiculoBean.cadastraVeiculo()}" update="@form"/>
+		</ui:define>
+	
+		<ui:define name="conteudo">
+		
+			<p:panelGrid columns="3">
+
+				<p:outputLabel for="n1" value="Marca" />
+				<p:selectOneMenu id="n1" value="#{veiculoBean.veiculo.marca}"
+					converter="omnifaces.SelectItemsIndexConverter">
+					<f:selectItem itemLabel="--Selecione--" noSelectionOption="true"/>
+					<f:selectItems itemValue="#{marca}" itemLabel="#{marca.nome}"
+						value="#{marcaBean.marcas}" var="marca" />
+
+				</p:selectOneMenu>
+				<p:message for="n1" />
+
+				<p:outputLabel for="n2" value="Modelo " />
+				<p:inputText id="n2" value="#{veiculoBean.veiculo.modelo}" />
+				<p:message for="n2" />
+
+				<p:outputLabel for="n3" value="Placa " />
+				<p:inputMask mask="aaa-999" id="n3" value="#{veiculoBean.veiculo.placa}" />
+				<p:message for="n3" />
+
+				<p:outputLabel for="n4" value="Cor " />
+				<p:colorPicker id="n4" value="#{veiculoBean.veiculo.cor}" />
+				<p:message for="n4" />
+
+				<p:outputLabel for="n5" value="Ano Modelo " />
+				<p:spinner id="n5" value="#{veiculoBean.veiculo.anoModelo}" />
+				<p:message for="n5" />
+
+				<p:outputLabel for="n6" value="Ano Fabricação " />
+				<p:spinner id="n6" value="#{veiculoBean.veiculo.fabricacaoModelo}"/>
+				<p:message for="n6" />
+
+				<p:outputLabel for="n7" value="Combustivel" />
+				<p:selectOneMenu id="n7"
+					value="#{veiculoBean.veiculo.tipoCombustivel}">
+					<f:selectItem itemLabel="--Selecione--" noSelectionOption="true"/>
+					<f:selectItem itemValue="Gasolina" itemLabel="Gasolina" />
+					<f:selectItem itemValue="Alcool" itemLabel="Alcool" />
+					<f:selectItem itemValue="Flex" itemLabel="Flex" />
+
+				</p:selectOneMenu>
+				<p:message for="n7" />
+
+				<p:outputLabel for="n8" value="FIPE R$: " />
+				<p:inputNumber id="n8" value="#{veiculoBean.veiculo.fipe}" thousandSeparator="." decimalSeparator="," decimalPlaces="2" />
+				<p:message for="n8" />
+
+			</p:panelGrid>
+			
+			
+		
+		</ui:define>
+		
+			
+	
+	</ui:composition>
+</html>

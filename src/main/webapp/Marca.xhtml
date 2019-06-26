@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+       
+
+<h:head></h:head> 
+<h:body> 
+
+	<h:form>
+	
+		<p:growl globalOnly="true"/>
+		
+		<p:panel header="Cadastro de Marca"> 
+			
+			
+			<p:panelGrid columns="3">
+			
+			<p:outputLabel for="n1" value="Marca:" />
+			<p:inputText id="n1" value="#{marcaBean.marca.nome}" />
+			<p:message for="n1"/>
+			
+			
+			<p:outputLabel for="n2" value="Descrição:" />
+			<p:inputText id="n2" value="#{marcaBean.marca.descricao}" rows="4" />
+			<p:message for="n2"/>
+			
+			</p:panelGrid>
+			
+			<f:facet name="footer">
+				<p:commandButton value="salvar" action="#{marcaBean.cadastrarMarca()}" update="@form"/>
+			</f:facet>
+		</p:panel>
+	
+		<p:dataTable value="#{marcaBean.listar()}" var="marca">
+		
+		<p:column headerText="Nome">
+			<h:outputText value="#{marca.nome}" />
+		</p:column>
+		
+		<p:column headerText="Descrição">
+			<h:outputText value="#{marca.descricao}" />
+		</p:column>
+		
+		<p:column headerText="Ações">
+			<p:commandButton value="Excluir" action="#{marcaBean.excluirMarca(marca)}" update="@form" immediate="true"/>
+		
+		</p:column>
+		
+		</p:dataTable>
+		
+	</h:form>
+ 
+</h:body> 
+</html>
